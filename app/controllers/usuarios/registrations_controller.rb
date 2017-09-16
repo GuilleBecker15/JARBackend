@@ -2,6 +2,7 @@ class Usuarios::RegistrationsController < Devise::RegistrationsController
   respond_to :json
   def create
     usuario = Usuario.new(usuario_params)
+    usuario.skip_confirmation_notification!
     if usuario.save
       puts usuario.attributes
       # render :json => usuario.as_json(:auth_token => usuario.authentication_token,:email => usuario.email), :status => 201
